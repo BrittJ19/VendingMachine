@@ -3,12 +3,12 @@ package com.techelevator;
 public class Beverage extends Product {
 
 
-    public Beverage(String productName, String type,String message, int price, Slot slot) {
-        super(productName, type, message, price, slot);
+    public Beverage(String productName, String type,String message, double price, Slot slot) {
+        super(productName, type, price, slot);
     }
 
     @Override
-    public int getPrice() {
+    public double getPrice() {
         return super.getPrice();
     }
 

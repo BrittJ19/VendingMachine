@@ -1,19 +1,19 @@
 package com.techelevator;
 
 public class Slot {
-    private Product product;
+    private String productName;
     private int quantity = 5;
-    private int price;
+    private double price;
     private String slotNumber;
 
-    public Slot( Product product, String slotNumber, int quantity, int price){
-        this.product = product;
+    public Slot( String productName, String slotNumber, int quantity, double price){
+        this.productName = productName;
         this.quantity = quantity;
         this.price = price;
         this.slotNumber = slotNumber;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -21,8 +21,8 @@ public class Slot {
         return quantity;
     }
 
-    public Product getProduct() {
-        return product;
+    public String getProduct() {
+        return productName;
     }
 
     public String getSlotNumber() {

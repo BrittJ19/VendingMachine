@@ -4,8 +4,8 @@ public class Chips extends Product{
     private String message;
 
 
-    public Chips(String productName, String type, String message, int price, Slot slot) {
-        super(productName, type, message, price, slot);
+    public Chips(String productName, String type, double price, Slot slot) {
+        super(productName, type, price, slot);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class Chips extends Product{
     }
 
     @Override
-    public int getPrice() {
+    public double getPrice() {
         return super.getPrice();
     }
 }
