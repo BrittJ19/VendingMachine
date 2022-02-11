@@ -19,6 +19,7 @@ public class Menu {
 	public Menu(InputStream input, OutputStream output) {
 		this.out = new PrintWriter(output);
 		this.in = new Scanner(input);
+		this.inventory.loadInventoryMap();
 	}
 
 	double money;
@@ -81,14 +82,13 @@ public class Menu {
 		String inputMoney = in.nextLine();
 		double money = Double.parseDouble(inputMoney);
 		machine.feedMoney(money);
-		System.out.println("Current Money Provided:" + " " + "$" + money
-		);
+		System.out.printf("Current Money Provided: $%,.2f", money);
 
 	}
 
 	//	String productName = inventory.getInventoryMap().get().getProduct();
 	public void purchase() {
-		if (moneyObject.getMoney() < 1){
+		if (moneyObject.getMoney() < 1) {
 			System.out.println("Feed Money, select option 2");
 
 		}
@@ -102,13 +102,23 @@ public class Menu {
 				System.out.println("SOLD OUT");
 			} else {
 				Product product = machine.purchaseProduct(inputSlot);
-
-//				inventory.getInventoryMap().get(inputSlot).setQuantity(inventory.getInventoryMap().get(inputSlot).getQuantity() - 1);
-				System.out.println("You just bought: " + product.productName + " " + product.getMessage() + " " + machine.getFunds());;
+//				Slot slot = new Slot();
+//				slot.setQuantity(slot.getQuantity()-1);
+				System.out.println("You just bought: " + product.productName + " " + product.getMessage() + " " + machine.getFunds());
+//				for (Map.Entry<String, Slot> entry : inventory.getInventoryMap().entrySet()){
+//					String key = entry.getKey();
+//					Slot value = entry.getValue();
+//					System.out.println(key + "|" + value.getProduct().getProductName() + "|" + value.getProduct().getPrice() + "|" + value.getQuantity());
+//
+//				}
 			}
 
 		} else {
 			System.out.println("Product does not exist");
 		}
+	}
+
+	public void finish() {
+		machine.returnChange();
 	}
 }

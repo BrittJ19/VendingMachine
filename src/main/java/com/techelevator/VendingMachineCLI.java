@@ -13,7 +13,7 @@ public class VendingMachineCLI {
 	private static final String SECOND_MENU_OPTION_SELECT = "Select Product";
 	private static final String SECOND_MENU_OPTION_FINISH = "Finish Transaction";
 	private static final String SECOND_MENU_MONEY_DISPLAY = "Current Money Provided:";
-	private static final String[] SECOND_MENU_OPTIONS = { SECOND_MENU_OPTION_FEED_MONEY, SECOND_MENU_OPTION_SELECT,SECOND_MENU_OPTION_FINISH };
+	private static final String[] SECOND_MENU_OPTIONS = { SECOND_MENU_OPTION_FEED_MONEY, SECOND_MENU_OPTION_SELECT,SECOND_MENU_OPTION_FINISH,};
 
 	private Menu menu;
 
@@ -37,11 +37,14 @@ public class VendingMachineCLI {
 						menu.feedMoney();
 					} else if (secondChoice.equals(SECOND_MENU_OPTION_SELECT)) {
 						menu.purchase();
-					}else if (secondChoice.equals(SECOND_MENU_OPTION_FINISH));
+					}else if (secondChoice.equals(SECOND_MENU_OPTION_FINISH)){
+						menu.finish();
+					}
 					}
 				}
 			else if(choice.equals(MAIN_MENU_OPTION_EXIT));// do purchase
 			}
+
 		}
 
 

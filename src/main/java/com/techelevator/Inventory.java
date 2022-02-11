@@ -19,8 +19,10 @@ public class Inventory {
     public File getInventoryList() {
         return inventoryList;
     }
-
     public Map<String, Slot> getInventoryMap() {
+        return inventoryMap;
+    }
+    public Map<String, Slot> loadInventoryMap() {
         try (Scanner scanner = new Scanner(inventoryList)) {
             while (scanner.hasNextLine()) {
                 String inventoryOutput = scanner.nextLine();

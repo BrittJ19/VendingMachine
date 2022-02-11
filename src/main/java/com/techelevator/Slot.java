@@ -14,6 +14,9 @@ public class Slot {
         this.slotNumber = slotNumber;
         this.product = product;
     }
+    public Slot(){
+
+    }
 
     public double getPrice() {
         return price;
@@ -37,6 +40,8 @@ public class Slot {
         return slotNumber;
     }
 
-
+    public void reduceQuantity() {
+        quantity--;
+    }
 }
 

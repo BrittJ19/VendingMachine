@@ -23,15 +23,28 @@ public class Machine {
     }
 
     public Product purchaseProduct(String slotNum){
-        Product product = inventory.getInventoryMap().get(slotNum).getProduct();
+        Slot slot = inventory.getInventoryMap().get(slotNum);
+        Product product = slot.getProduct();
         funds -= product.price;
         total += product.price;
+        slot.reduceQuantity();
         return product;
     }
 
-    public double returnChange(){
-        double change = funds;
+    public void returnChange(){
+        int change = (int) (funds * 100);
+        int quarters = 0;
+        int dimes = 0;
+        int nickles =0;
+            quarters = change / 25;
+            change -= quarters * 25;
+            dimes = change / 10;
+            change -= dimes * 10;
+            nickles = change / 5;
+
+        System.out.println("Your change is " + quarters + " quarters " + dimes + " dimes " + nickles + " nickles ");
         funds = 0;
-        return change;
     }
+
+
 }
