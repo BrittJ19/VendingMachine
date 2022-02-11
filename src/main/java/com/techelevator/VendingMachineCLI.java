@@ -36,7 +36,7 @@ public class VendingMachineCLI {
 						// display vending machine items
 						menu.feedMoney();
 					} else if (secondChoice.equals(SECOND_MENU_OPTION_SELECT)) {
-						// do purchase
+						menu.purchase();
 					}else if (secondChoice.equals(SECOND_MENU_OPTION_FINISH));
 					}
 				}

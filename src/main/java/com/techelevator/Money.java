@@ -1,7 +1,7 @@
 package com.techelevator;
 
 public class Money {
-    private double money;
+    private double money = 0;
 
     public Money(double money){
         this.money = money;

@@ -20,15 +20,23 @@ public class Slot {
     }
 
     public int getQuantity() {
+        if (quantity < 1){
+            soldOut();
+        }
         return quantity;
     }
+    public void soldOut(){
+        System.out.println("Sold Out");
+    }
 
-    public String getProduct() {
-        return productName;
+    public Product getProduct() {
+        return product;
     }
 
     public String getSlotNumber() {
         return slotNumber;
     }
+
+
 }
 

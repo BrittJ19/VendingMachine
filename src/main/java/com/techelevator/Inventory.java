@@ -55,6 +55,7 @@ public class Inventory {
         return inventoryMap;
 
     }
+
 //    public void getDisplay(){
 //        for (Map.Entry < String, Slot > entry:inventoryMap.entrySet()){
 //            String key = entry.getKey();

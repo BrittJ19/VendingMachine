@@ -1,9 +1,8 @@
 package com.techelevator.view;
 
-import com.techelevator.Inventory;
-import com.techelevator.Money;
-import com.techelevator.Slot;
+import com.techelevator.*;
 
+import javax.swing.text.html.Option;
 import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -22,8 +21,11 @@ public class Menu {
 		this.in = new Scanner(input);
 	}
 
+	double money;
 	File inventoryList = new File("vendingmachine.csv");
 	Inventory inventory = new Inventory(inventoryList);
+	Money moneyObject = new Money(money);
+	Machine machine = new Machine(inventory);
 
 	public Object getChoiceFromOptions(Object[] options) {
 		Object choice = null;
@@ -69,26 +71,44 @@ public class Menu {
 		for (Map.Entry<String, Slot> entry : inventory.getInventoryMap().entrySet()) {
 			String key = entry.getKey();
 			Slot value = entry.getValue();
-			System.out.println(key + "|" + value.getProduct() + "|" + value.getPrice() + "|" + value.getQuantity());
+			System.out.println(key + "|" + value.getProduct().getProductName() + "|" + value.getProduct().getPrice() + "|" + value.getQuantity());
 
 		}
 	}
-	public void feedMoney(){
+
+	public void feedMoney() {
 		System.out.println("Insert Money");
-		String  inputMoney = in.nextLine();
+		String inputMoney = in.nextLine();
 		double money = Double.parseDouble(inputMoney);
-		Money moneyObject = new Money(money);
-		System.out.println("Current Money Provided:" +" "+"$"+money);
+		machine.feedMoney(money);
+		System.out.println("Current Money Provided:" + " " + "$" + money
+		);
 
 	}
-	public void purchase(){
+
+	//	String productName = inventory.getInventoryMap().get().getProduct();
+	public void purchase() {
+		if (moneyObject.getMoney() < 1){
+			System.out.println("Feed Money, select option 2");
+
+		}
+		getDisplay();
 		System.out.println("Select Slot");
 		String inputSlot = in.nextLine();
-		if(inventory.getInventoryMap().containsKey(inputSlot)){
-			System.out.println(inventory.getInventoryMap().get(inputSlot));
-			
+		if (inventory.getInventoryMap().containsKey(inputSlot)) {
+			if (machine.getFunds() < inventory.getInventoryMap().get(inputSlot).getPrice()) {
+				System.out.println("Insufficient Funds, Feed in money");
+			} else if (inventory.getInventoryMap().get(inputSlot).getQuantity() == 0) {
+				System.out.println("SOLD OUT");
+			} else {
+				Product product = machine.purchaseProduct(inputSlot);
+
+//				inventory.getInventoryMap().get(inputSlot).setQuantity(inventory.getInventoryMap().get(inputSlot).getQuantity() - 1);
+				System.out.println("You just bought: " + product.productName + " " + product.getMessage() + " " + machine.getFunds());;
+			}
+
+		} else {
+			System.out.println("Product does not exist");
 		}
-		Money moneyObject = new Money(money);
-		getDisplay();
 	}
 }
