@@ -1,11 +1,14 @@
 package com.techelevator.view;
 
 import com.techelevator.Inventory;
+import com.techelevator.Money;
+import com.techelevator.Slot;
 
 import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Menu {
@@ -18,6 +21,7 @@ public class Menu {
 		this.out = new PrintWriter(output);
 		this.in = new Scanner(input);
 	}
+
 	File inventoryList = new File("vendingmachine.csv");
 	Inventory inventory = new Inventory(inventoryList);
 
@@ -61,4 +65,30 @@ public class Menu {
 		return in;
 	}
 
+	public void getDisplay() {
+		for (Map.Entry<String, Slot> entry : inventory.getInventoryMap().entrySet()) {
+			String key = entry.getKey();
+			Slot value = entry.getValue();
+			System.out.println(key + "|" + value.getProduct() + "|" + value.getPrice() + "|" + value.getQuantity());
+
+		}
+	}
+	public void feedMoney(){
+		System.out.println("Insert Money");
+		String  inputMoney = in.nextLine();
+		double money = Double.parseDouble(inputMoney);
+		Money moneyObject = new Money(money);
+		System.out.println("Current Money Provided:" +" "+"$"+money);
+
+	}
+	public void purchase(){
+		System.out.println("Select Slot");
+		String inputSlot = in.nextLine();
+		if(inventory.getInventoryMap().containsKey(inputSlot)){
+			System.out.println(inventory.getInventoryMap().get(inputSlot));
+			
+		}
+		Money moneyObject = new Money(money);
+		getDisplay();
+	}
 }

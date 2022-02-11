@@ -12,7 +12,7 @@ public class CandyTest {
 
         Slot slot = new Slot("Lays", "B3", 5, 3.50, candy);
 
-        assertEquals("Munch, Munch, Yum", candy.getMessage());
+        assertEquals("Munch, Munch, Yum!", candy.getMessage());
 
     }
 }

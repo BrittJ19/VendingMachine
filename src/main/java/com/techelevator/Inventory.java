@@ -55,4 +55,10 @@ public class Inventory {
         return inventoryMap;
 
     }
-}
+//    public void getDisplay(){
+//        for (Map.Entry < String, Slot > entry:inventoryMap.entrySet()){
+//            String key = entry.getKey();
+//            Slot value = entry.getValue();
+//            System.out.println(key+"|"+value.getProduct()+ "|"+ value.getPrice()+"|"+ value.getQuantity());
+        }
+

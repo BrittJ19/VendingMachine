@@ -6,7 +6,14 @@ public class VendingMachineCLI {
 
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
-	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE };
+	private static final String MAIN_MENU_OPTION_EXIT = "Exit";
+	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE,MAIN_MENU_OPTION_EXIT };
+
+	private static final String SECOND_MENU_OPTION_FEED_MONEY = "Feed Money";
+	private static final String SECOND_MENU_OPTION_SELECT = "Select Product";
+	private static final String SECOND_MENU_OPTION_FINISH = "Finish Transaction";
+	private static final String SECOND_MENU_MONEY_DISPLAY = "Current Money Provided:";
+	private static final String[] SECOND_MENU_OPTIONS = { SECOND_MENU_OPTION_FEED_MONEY, SECOND_MENU_OPTION_SELECT,SECOND_MENU_OPTION_FINISH };
 
 	private Menu menu;
 
@@ -20,11 +27,23 @@ public class VendingMachineCLI {
 
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
 				// display vending machine items
+				menu.getDisplay();
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
-				// do purchase
+				while (true) {
+					String secondChoice = (String) menu.getChoiceFromOptions(SECOND_MENU_OPTIONS);
+
+					if (secondChoice.equals(SECOND_MENU_OPTION_FEED_MONEY)) {
+						// display vending machine items
+						menu.feedMoney();
+					} else if (secondChoice.equals(SECOND_MENU_OPTION_SELECT)) {
+						// do purchase
+					}else if (secondChoice.equals(SECOND_MENU_OPTION_FINISH));
+					}
+				}
+			else if(choice.equals(MAIN_MENU_OPTION_EXIT));// do purchase
 			}
 		}
-	}
+
 
 	public static void main(String[] args) {
 		Menu menu = new Menu(System.in, System.out);

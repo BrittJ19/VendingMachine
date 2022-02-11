@@ -8,6 +8,6 @@ public class Candy extends Product {
 
     @Override
     public String getMessage() {
-        return "Munch Munch, Yum!";
+        return "Munch, Munch, Yum!";
     }
 }

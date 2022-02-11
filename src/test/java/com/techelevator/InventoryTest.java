@@ -24,4 +24,11 @@ public class InventoryTest {
         assertEquals("Cola", map.get("C1").getProduct());
 
     }
+    @Test
+    public void getDisplay(){
+        File file = new File("vendingmachine.csv");
+        Inventory inventory = new Inventory(file);
+        Map<String, Slot> map = inventory.getInventoryMap();
+//        inventory.getDisplay();
+    }
 }
