@@ -5,12 +5,14 @@ public class Slot {
     private int quantity = 5;
     private double price;
     private String slotNumber;
+    private Product product;
 
-    public Slot( String productName, String slotNumber, int quantity, double price){
+    public Slot(String productName, String slotNumber, int quantity, double price, Product product){
         this.productName = productName;
         this.quantity = quantity;
         this.price = price;
         this.slotNumber = slotNumber;
+        this.product = product;
     }
 
     public double getPrice() {

@@ -1,5 +1,8 @@
 package com.techelevator.view;
 
+import com.techelevator.Inventory;
+
+import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -10,10 +13,13 @@ public class Menu {
 	private PrintWriter out;
 	private Scanner in;
 
+
 	public Menu(InputStream input, OutputStream output) {
 		this.out = new PrintWriter(output);
 		this.in = new Scanner(input);
 	}
+	File inventoryList = new File("vendingmachine.csv");
+	Inventory inventory = new Inventory(inventoryList);
 
 	public Object getChoiceFromOptions(Object[] options) {
 		Object choice = null;
@@ -54,4 +60,5 @@ public class Menu {
 	public Scanner getIn() {
 		return in;
 	}
+
 }

@@ -4,32 +4,14 @@ public class Chips extends Product{
     private String message;
 
 
-    public Chips(String productName, String type, double price, Slot slot) {
-        super(productName, type, price, slot);
+    public Chips(String productName, String type, double price) {
+        super(productName, type, price);
     }
 
-    @Override
-    public String getType() {
-        return super.getType();
-    }
-
-    @Override
-    public String getProductName() {
-        return super.getProductName();
-    }
 
     @Override
     public String getMessage() {
-        return message;
+        return "";
     }
 
-    @Override
-    public Slot getSlot() {
-        return super.getSlot();
-    }
-
-    @Override
-    public double getPrice() {
-        return super.getPrice();
-    }
 }

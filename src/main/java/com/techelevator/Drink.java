@@ -1,13 +1,13 @@
 package com.techelevator;
 
-public class Gum extends Product{
+public class Drink extends Product {
 
-    public Gum(String productName, String type, double price) {
+
+    public Drink(String productName, String type, double price) {
         super(productName, type, price);
     }
 
-
-    @Override
+   @Override
     public String getMessage() {
         return "";
     }

@@ -1,29 +1,22 @@
 package com.techelevator;
 
-public  class Product {
+public abstract class Product {
 
     public String productName;
     public String type;
-    public String message;
     public double price;
-    public Slot slot;
 
 
 
-    public Product(String productName, String type, double price,Slot slot){
+    public Product(String productName, String type, double price){
         this.price = price;
         this.productName= productName;
-        this.message = message;
         this.type = type;
-        this.slot =slot;
+
     }
 
     public double getPrice() {
         return price;
-    }
-
-    public Slot getSlot() {
-        return slot;
     }
 
     public String getProductName() {
@@ -33,7 +26,5 @@ public  class Product {
     public String getType() {
         return type;
     }
-    public String getMessage(){
-        return message;
-    }
+    public abstract String getMessage();
 }
