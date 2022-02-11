@@ -28,7 +28,7 @@ public class Inventory {
                 double price = Double.parseDouble(line[2]);
                 Product product;
                 if(line[3].equalsIgnoreCase("chip")){
-                    product = new Chips(line[1], line[3], price);
+                    product = new Chip(line[1], line[3], price);
                     Slot snackSlot = new Slot(line[1], line[0], 5, price, product);
                     inventoryMap.put(line[0], snackSlot);
                 } else if (line[3].equalsIgnoreCase("candy")){

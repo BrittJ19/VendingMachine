@@ -9,6 +9,6 @@ public class Gum extends Product{
 
     @Override
     public String getMessage() {
-        return "";
+        return "Chew Chew, yum!";
     }
 }
