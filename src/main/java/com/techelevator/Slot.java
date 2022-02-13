@@ -23,13 +23,7 @@ public class Slot {
     }
 
     public int getQuantity() {
-        if (quantity < 1){
-            soldOut();
-        }
         return quantity;
-    }
-    public void soldOut(){
-        System.out.println("Sold Out");
     }
 
     public Product getProduct() {

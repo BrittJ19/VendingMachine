@@ -17,11 +17,11 @@ public class InventoryTest {
     public void getInventoryMap() {
         File file = new File("vendingmachine.csv");
         Inventory inventory = new Inventory(file);
-        Map<String, Slot> map = inventory.getInventoryMap();
+        Map<String, Slot> map = inventory.loadInventoryMap();
         assertEquals(16, map.size());
-        assertEquals("Potato Crisps", map.get("A1").getProduct());
-        assertEquals("Moonpie", map.get("B1").getProduct());
-        assertEquals("Cola", map.get("C1").getProduct());
+        assertEquals("Potato Crisps", map.get("A1").getProduct().productName);
+        assertEquals("Moonpie", map.get("B1").getProduct().productName);
+        assertEquals("Cola", map.get("C1").getProduct().productName);
 
     }
     @Test

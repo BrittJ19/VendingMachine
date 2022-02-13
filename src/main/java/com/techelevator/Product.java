@@ -5,6 +5,7 @@ public abstract class Product {
     public String productName;
     public String type;
     public double price;
+    public int sales = 0;
 
 
 
@@ -27,4 +28,13 @@ public abstract class Product {
         return type;
     }
     public abstract String getMessage();
+
+    public void productSold(){
+        sales++;
+    }
+
+    public int getSales() {
+        return sales;
+    }
+
 }

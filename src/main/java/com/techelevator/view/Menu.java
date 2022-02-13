@@ -1,12 +1,10 @@
 package com.techelevator.view;
 
 import com.techelevator.*;
+import jdk.swing.interop.SwingInterOpUtils;
 
 import javax.swing.text.html.Option;
-import java.io.File;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -25,7 +23,6 @@ public class Menu {
 	double money;
 	File inventoryList = new File("vendingmachine.csv");
 	Inventory inventory = new Inventory(inventoryList);
-	Money moneyObject = new Money(money);
 	Machine machine = new Machine(inventory);
 
 	public Object getChoiceFromOptions(Object[] options) {
@@ -47,6 +44,7 @@ public class Menu {
 			}
 		} catch (NumberFormatException e) {
 			// eat the exception, an error message will be displayed below since choice will be null
+			System.out.println(e.getMessage());
 		}
 		if (choice == null) {
 			out.println(System.lineSeparator() + "*** " + userInput + " is not a valid option ***" + System.lineSeparator());
@@ -57,8 +55,12 @@ public class Menu {
 	private void displayMenuOptions(Object[] options) {
 		out.println();
 		for (int i = 0; i < options.length; i++) {
+			if (i == 3){
+				int optionNum = i;
+			} else {
 			int optionNum = i + 1;
 			out.println(optionNum + ") " + options[i]);
+			}
 		}
 		out.print(System.lineSeparator() + "Please choose an option >>> ");
 		out.flush();
@@ -72,28 +74,37 @@ public class Menu {
 		for (Map.Entry<String, Slot> entry : inventory.getInventoryMap().entrySet()) {
 			String key = entry.getKey();
 			Slot value = entry.getValue();
+			if (value.getQuantity() == 0){
+				System.out.println(key + "|" + value.getProduct().getProductName() + "|" + value.getProduct().getPrice() + "| SOLD OUT");
+			} else {
 			System.out.println(key + "|" + value.getProduct().getProductName() + "|" + value.getProduct().getPrice() + "|" + value.getQuantity());
+			}
 
 		}
 	}
+
 
 	public void feedMoney() {
 		System.out.println("Insert Money");
 		String inputMoney = in.nextLine();
-		double money = Double.parseDouble(inputMoney);
+		money = Double.parseDouble(inputMoney);
+		if (money == 1 || money == 5 || money == 10){
 		machine.feedMoney(money);
-		System.out.printf("Current Money Provided: $%,.2f", money);
+		System.out.printf("Current Money Provided: $%,.2f", machine.getFunds());
+		} else {
+			System.out.println("Please insert $1, $5, or $10");
+		}
 
 	}
 
-	//	String productName = inventory.getInventoryMap().get().getProduct();
-	public void purchase() {
-		if (moneyObject.getMoney() < 1) {
-			System.out.println("Feed Money, select option 2");
 
-		}
+	public void purchase() {
+//		if (moneyObject.getMoney() < 1) {
+//			System.out.println("Feed Money, select option 2");
+//
+//		}
 		getDisplay();
-		System.out.println("Select Slot");
+		System.out.println("\nSelect Slot");
 		String inputSlot = in.nextLine();
 		if (inventory.getInventoryMap().containsKey(inputSlot)) {
 			if (machine.getFunds() < inventory.getInventoryMap().get(inputSlot).getPrice()) {
@@ -102,15 +113,9 @@ public class Menu {
 				System.out.println("SOLD OUT");
 			} else {
 				Product product = machine.purchaseProduct(inputSlot);
-//				Slot slot = new Slot();
-//				slot.setQuantity(slot.getQuantity()-1);
-				System.out.println("You just bought: " + product.productName + " " + product.getMessage() + " " + machine.getFunds());
-//				for (Map.Entry<String, Slot> entry : inventory.getInventoryMap().entrySet()){
-//					String key = entry.getKey();
-//					Slot value = entry.getValue();
-//					System.out.println(key + "|" + value.getProduct().getProductName() + "|" + value.getProduct().getPrice() + "|" + value.getQuantity());
-//
-//				}
+				System.out.println("You just bought: " + product.productName + " " + product.getMessage());
+				System.out.println("Balance remaining: " + String.format("$%,.2f", machine.getFunds()));
+
 			}
 
 		} else {
@@ -120,5 +125,9 @@ public class Menu {
 
 	public void finish() {
 		machine.returnChange();
+
+	}
+	public void writeSalesReport() {
+		machine.getSalesReport();
 	}
 }
