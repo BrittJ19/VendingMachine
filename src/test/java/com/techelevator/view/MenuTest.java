@@ -97,4 +97,15 @@ public class MenuTest {
 	private Menu getMenuForTesting() {
 		return getMenuForTestingWithUserInput("1" + System.lineSeparator());
 	}
+
+	@Test
+	public void purchaseOptionSelected(){
+		Menu menu = getMenuForTestingWithUserInput("2" + System.lineSeparator());
+		Double result = (Double) menu.money;
+
+
+//		Assert.assertEquals(expected, result);
+
+	}
 }
+
